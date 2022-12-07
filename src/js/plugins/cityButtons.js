@@ -6,9 +6,16 @@ function filterByCity(city) {
   $("[wb-city]").each(function(idx, ele) {
     const isTarget = $(this).attr("wb-city") === city || city === null;
     if (isTarget) {
+      $(this)
+        .parent()
+        .removeClass("d-none");
       $(this).fadeIn(duration);
     } else {
-      $(this).fadeOut(duration);
+      $(this).fadeOut(duration, () => {
+        $(this)
+          .parent()
+          .addClass("d-none");
+      });
     }
   });
 }
