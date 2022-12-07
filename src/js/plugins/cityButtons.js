@@ -12,3 +12,28 @@ function filterByCity(city) {
     }
   });
 }
+
+const cityButtons = $("[wb-city-buttons]");
+const cities = new Set();
+$("[wb-city]").each(function(idx, ele) {
+  cities.add($(ele).attr("wb-city"));
+});
+
+const btns = Array.from(cities).map(city => {
+  const btn = $("<button>")
+    .addClass(["btn", "btn-info"])
+    .html(city);
+  btn.click(ele => filterByCity(city));
+  return btn;
+});
+
+const btnAll = $("<button>")
+  .addClass(["btn", "btn-info", "active"])
+  .html("All");
+btnAll.click(ele => filterByCity(null));
+btns.push(btnAll);
+
+const btnGroup = $("<div>").addClass(["btn-group"]);
+btnGroup.append(btns);
+
+cityButtons.html(btnGroup);
