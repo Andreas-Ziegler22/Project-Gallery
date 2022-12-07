@@ -1,5 +1,7 @@
 import $ from "jquery";
 
+import { onLoadHtmlSuccess } from "../core/includes";
+
 const duration = 600;
 
 function filterByCity(city) {
@@ -47,4 +49,6 @@ $.fn.cityButtons = function() {
   return this;
 };
 
-$("[wb-city-buttons]").cityButtons();
+onLoadHtmlSuccess(function() {
+  $("[wb-city-buttons]").cityButtons();
+});
